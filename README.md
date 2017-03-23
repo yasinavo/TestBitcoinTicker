@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 ## Bitcoin Ticker - Laravel
 
@@ -103,4 +102,4 @@ run the project on the browser: TestBitcoinTicker/public/rate/
 
 
 
->>>>>>> origin/master
+
