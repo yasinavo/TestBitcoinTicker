@@ -1,5 +1,3 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
 
 
 ## Bitcoin Ticker
@@ -15,7 +13,7 @@ Get the ticker data from crypto exchanges and EUR/USD currency exchange rate and
 ## Running
 
 Used techs:
-PHP, Laravel 5.4, mysql, homestead, 
+PHP, Laravel 5.4, mysql, homestead, Vagrant, composer
 
 
 ## Running
@@ -60,6 +58,17 @@ Custom Commands are stored in the app/Console/Commands
 
  <li>Run  </li>
 
+<b>
+Change the DB details in the .env file and also in the /config/database.php
+
+Go to the directory where the project is
+
+Enter the command composer install
+
+Enter the command php artisan migrate
+
+run the project on the browser: TestBitcoinTicker/public/rate/
+</b>
 
 ## TODO
 
@@ -67,7 +76,9 @@ Custom Commands are stored in the app/Console/Commands
 * Handle unavailable, broken feeds and corrupted data
 * Create tests
 * Response - when new price available
-
+* Show BTC/EUR rete (API structure would change)
+* Show number of feed/ active feeds
+* Check scalability
 
 
 ## Features
