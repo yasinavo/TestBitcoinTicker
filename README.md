@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 ## Bitcoin Ticker - Laravel
 
 This is a Bitcoin price ticker built to work with different Bitcoin markets. 
@@ -98,3 +100,7 @@ run the project on the browser: TestBitcoinTicker/public/rate/
             Currency.php
             Exchanges.php
         Rates.php
+
+
+
+>>>>>>> origin/master
