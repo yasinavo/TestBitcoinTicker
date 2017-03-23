@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kasutaja
- * Date: 3/20/2017
- * Time: 2:51 AM
- */
 
 namespace App\RequestClients;
 
@@ -141,17 +135,7 @@ class Exchanges
 
         curl_multi_close($multi_curl);
 
-//Add ?anything to the url to get the debug view
-//        if(!empty($_GET)) {
-//            foreach ($bitcoin_sites as &$site) {
-//                foreach ($site['coins'] as &$coin) {
-//                    $coin['curl_debug'] = curl_getinfo($coin['curl']); //Dump the curl handlers
-//                    echo var_dump($coin['curl_debug']);
-//                }
-//            }
-//        } else {
-//            echo $output_string;
-//        }
+
 
         return  $lastPrices;
 

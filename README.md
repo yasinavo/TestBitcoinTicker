@@ -1,40 +1,100 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Bitcoin Ticker - Laravel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This is a Bitcoin price ticker built to work with different Bitcoin markets. 
+Included exchanges:
+    <li>BitStamp</li>
+    <li>BTC-e</li>
+    <li>cex</li>
+    <li>itbit</li>
+Get the ticker data from crypto exchanges and EUR/USD currency exchange rate and store them to mysql database.  
+    
 
-## About Laravel
+Used techs:
+PHP, Laravel 5.4, mysql, homestead, Vagrant, composer
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Running
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+To run the ticker,
 
-## Learning Laravel
+ <li>Create cron job</li>
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+Laravel's command scheduler allows you to fluently and expressively define your command schedule within Laravel itself. When using the scheduler, only a single Cron entry is needed on your server. Your task schedule is defined in the app/Console/Kernel.php file's schedule method.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+https://laravel.com/docs/5.4/scheduling
 
-## Contributing
+Add the following Cron entry to your server. (Change path/to/ according to your project path)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+        * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
 
-## Security Vulnerabilities
+This Cron will call the Laravel command scheduler every minute. When the schedule:run command is executed, Laravel will evaluate your scheduled tasks and runs the tasks that are due.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Sample code: app/Console/Kernel.php
 
-## License
+    protected function schedule(Schedule $schedule)
+    {
+         $schedule->command('getprice')
+             ->everyTenMinutes(); // Run cron job in every ten minutes.
+    }
+    
+  
+Custom Commands are stored in the app/Console/Commands
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+ <li>Migrate Database </li>
+ https://laravel.com/docs/5.4/migrations
+ 
+ <li>Edit .env file as needed </li>
+ 
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=homestead
+        DB_USERNAME=homestead
+        DB_PASSWORD=secret
+
+
+ <li>Run  </li>
+
+
+<br/>
+
+Change the DB details in the .env file and also in the /config/database.php
+
+Go to the directory where the project is
+
+Enter the command composer install
+
+Enter the command php artisan migrate
+
+run the project on the browser: TestBitcoinTicker/public/rate/
+
+
+## TODO
+
+## High Priority
+* Handle unavailable, broken feeds and corrupted data
+* Create tests
+* Response - when new price available
+* Show BTC/EUR rete (API structure would change)
+* Show number of feed/ active feeds
+* Check scalability
+
+
+## Features
+* cron job to automatically get feed data and update DB according to a set schedule
+
+## Files with codes
+
+    app
+        Console
+            Commands
+                GetPrice.php
+            Kernal.php
+            
+        Http
+            Controllers
+                PagesController.php
+        RequestClients
+            Currency.php
+            Exchanges.php
+        Rates.php
