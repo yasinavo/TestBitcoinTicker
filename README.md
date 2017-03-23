@@ -10,22 +10,66 @@ Included exchanges:
     <li>BTC-e</li>
     <li>cex</li>
     <li>itbit</li>
+Get the ticker data from crypto exchanges and EUR/USD currency exchange rate and store them to mysql database.  
     
+## Running
+
+Used techs:
+PHP, Laravel 5.4, mysql, homestead, 
+
+
+## Running
+
+To run the ticker,
+
+ <li>Create cron job</li>
+
+Laravel's command scheduler allows you to fluently and expressively define your command schedule within Laravel itself. When using the scheduler, only a single Cron entry is needed on your server. Your task schedule is defined in the app/Console/Kernel.php file's schedule method.
+
+https://laravel.com/docs/5.4/scheduling
+
+Add the following Cron entry to your server. (Change path/to/ according to your project path)
+
+* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+
+This Cron will call the Laravel command scheduler every minute. When the schedule:run command is executed, Laravel will evaluate your scheduled tasks and runs the tasks that are due.
+
+Sample code: app/Console/Kernel.php
+
+    protected function schedule(Schedule $schedule)
+    {
+         $schedule->command('getprice')
+             ->everyTenMinutes(); // Run cron job in every ten minutes.
+    }
     
-## Learning Laravel
+  
+Custom Commands are stored in the app/Console/Commands
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+ <li>Migrate Database </li>
+ https://laravel.com/docs/5.4/migrations
+ 
+ <li>Edit .env file as needed </li>
+ 
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=homestead
+        DB_USERNAME=homestead
+        DB_PASSWORD=secret
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-## Contributing
+ <li>Run  </li>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+## TODO
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## High Priority
+* Handle unavailable, broken feeds and corrupted data
+* Create tests
+* Response - when new price available
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+## Features
+* cron job to automatically get feed data and update DB according to a set schedule
+
