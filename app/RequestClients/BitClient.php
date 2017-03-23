@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kasutaja
- * Date: 3/4/2017
- * Time: 5:36 PM
- */
+
 
 namespace App\RequestClients;
 
 
 class BitClient
 {
-
+    // This is a test script
     // Parallel request to API
     public function multiRequest()
     {
@@ -60,45 +55,6 @@ class BitClient
 
 
     }
-
-
-
-
-
-
-
-
-//    //Bitpay API
-//    public function dataFetch($url){
-//        $curl = curl_init();
-//        curl_setopt($curl, CURLOPT_URL, $url);
-//        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-//        $result = curl_exec($curl);
-//        curl_close($curl);
-//
-//        return json_decode($result);
-//
-//    }
-//
-//
-//    //BTC-e API
-//    public function btcRate($url){
-//        //$url = "https://btc-e.com/api/2/btc_usd/ticker";
-//        $json = json_decode(file_get_contents($url), true);
-//        //$price = $json["ticker"]["last"];
-//
-//        return $json;
-//
-//    }
-//
-//    //Bitstamp API
-//    public function bitStamp($url){
-//       $url= "https://www.bitstamp.net/api/ticker/";
-//        $json = json_decode(file_get_contents($url), true);
-//        //$price = $json["last"];
-//        return $json;
-//    }
-
 
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRatesTable extends Migration
+class AddColumnToTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('exchange',20);
-            $table->decimal('last_price', 5,2);
-            $table->timestamps();
-               });
-
-
+        Schema::table('rates', function (Blueprint $table) {
+            $table->decimal('currency', 5,2);
+        });
     }
 
     /**
@@ -30,6 +25,8 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::table('rates', function (Blueprint $table) {
+            //
+        });
     }
 }

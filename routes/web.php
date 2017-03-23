@@ -34,4 +34,3 @@ Route::get('customer','CustomerController@clientList');
 
 Route::get('rate','HomeController@index'); // Exchanges - all
 
-Route::get('ticket_one','HomeController@basicTicker');// Test tickers - Bitstamp API

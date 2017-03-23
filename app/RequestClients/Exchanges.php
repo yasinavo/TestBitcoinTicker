@@ -11,6 +11,7 @@ namespace App\RequestClients;
 
 class Exchanges
 {
+//Executes a CURL request to bitcoin ticket APIs, gets the JSON reply and return.
 
     public static function getPrice()
     {
@@ -110,7 +111,7 @@ class Exchanges
                 curl_multi_add_handle($multi_curl, $coin['curl']);
             }
         }
-//Execute each curl concurrently for speed
+        //Execute each curl concurrently for speed
         do {
             $mrc = curl_multi_exec($multi_curl, $active);
         } while ($active && $mrc == CURLM_OK);
@@ -125,7 +126,7 @@ class Exchanges
                 $coin['last_price'] = json_decode($coin['json_reply'], true);
 
                 foreach ($coin['json_index'] as $subarray) {
-                    $coin['last_price'] = $coin['last_price'][$subarray];
+                    $coin['last_price'] = $coin['last_price'][$subarray]; // Look for last price. Each API stores last price in different format.
                 }
 
                 //If price is 0 or null, an error or timeout probably occured

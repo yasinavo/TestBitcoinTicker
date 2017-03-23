@@ -113,14 +113,17 @@
 
     <div class="content">
         <div class="title m-b-md">
-        @foreach($rates as $rate)
+        {{--@foreach($rate as $rate)--}}
+            <table>
+                <tr>
 
-                <li> BTC/USD: {{ $rate}} </li>
-
-        @endforeach
-            <li id="currency"> </li>
+                    <td> <li> BTC/USD: {{ $rate}}  | </li> </td>
+                    <td>  EUR/USD: {{ $curr}}  </td>
+                </tr>
+        {{--@endforeach--}}
+            {{--<li id="currency"> </li>--}}
             {{--{{ $last}}--}}
-
+            </table>
         </div>
 
 

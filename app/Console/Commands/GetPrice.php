@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Rates;
+use App\RequestClients\Currency;
 use App\RequestClients\Exchanges;
 use Illuminate\Console\Command;
 
@@ -39,11 +40,10 @@ class GetPrice extends Command
      */
     public function handle()
     {
-        $prices = Exchanges::getPrice();
-        $munPrice = min($prices);
+        $prices = Exchanges::getPrice(); // Get last price of exchanges. Array returned.
+        $currency = Currency::getCurrency(); // Get USD rate for EUR
+        $minPrice = min($prices); // Find the lowest last price
         $rate =  new Rates();
-        $rate->updatePrice('min',$munPrice);
-
-
+        $rate->updatePrice('min',$minPrice,$currency); // Save retrieved data in to mysql database.
     }
 }
