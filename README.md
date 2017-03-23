@@ -28,7 +28,7 @@ https://laravel.com/docs/5.4/scheduling
 
 Add the following Cron entry to your server. (Change path/to/ according to your project path)
 
-* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+        * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
 
 This Cron will call the Laravel command scheduler every minute. When the schedule:run command is executed, Laravel will evaluate your scheduled tasks and runs the tasks that are due.
 
@@ -58,7 +58,9 @@ Custom Commands are stored in the app/Console/Commands
 
  <li>Run  </li>
 
-<b>
+
+<br/>
+
 Change the DB details in the .env file and also in the /config/database.php
 
 Go to the directory where the project is
@@ -68,7 +70,7 @@ Enter the command composer install
 Enter the command php artisan migrate
 
 run the project on the browser: TestBitcoinTicker/public/rate/
-</b>
+
 
 ## TODO
 
@@ -83,4 +85,22 @@ run the project on the browser: TestBitcoinTicker/public/rate/
 
 ## Features
 * cron job to automatically get feed data and update DB according to a set schedule
+
+## Files with codes
+
+    app
+        Console
+            Commands
+                GetPrice.php
+            Kernal.php
+            
+        Http
+            Controllers
+                PagesController.php
+        RequestClients
+            Currency.php
+            Exchanges.php
+        Rates.php
+
+
 
