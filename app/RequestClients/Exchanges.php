@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kasutaja
- * Date: 3/20/2017
- * Time: 2:51 AM
- */
 
 namespace App\RequestClients;
 
