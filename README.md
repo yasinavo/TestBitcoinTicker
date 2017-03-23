@@ -1,8 +1,8 @@
 
 
-## Bitcoin Ticker
+## Bitcoin Ticker - Laravel
 
-BitTicker is a Bitcoin price ticker built to work with different Bitcoin markets.
+This is a Bitcoin price ticker built to work with different Bitcoin markets. 
 Included exchanges:
     <li>BitStamp</li>
     <li>BTC-e</li>
@@ -10,7 +10,6 @@ Included exchanges:
     <li>itbit</li>
 Get the ticker data from crypto exchanges and EUR/USD currency exchange rate and store them to mysql database.  
     
-## Running
 
 Used techs:
 PHP, Laravel 5.4, mysql, homestead, Vagrant, composer
